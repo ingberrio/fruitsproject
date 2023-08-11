@@ -41,10 +41,25 @@ mongoose.connect('mongodb://localhost:27017/fruitsDB', {
       }
     ];
 
+    const personSchema = new mongoose.Schema({
+      name: String,                     // Name of the person
+      age: Number,
+    });
+
+    const Person = mongoose.model('Person', personSchema);
+
+    const persons = [
+      {
+        name: "Edu",   
+        age: 25
+      }
+    ];
+
     // Insert the fruits array into the "fruits" collection
     try {
       // Insert the fruits array into the "fruits" collection
       await Fruit.insertMany(fruits);
+      await Person.create(persons)
       console.log('Documents inserted successfully');
   
       // Close the MongoDB connection
